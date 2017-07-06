@@ -1,4 +1,0 @@
-[submodule "wiki"]
-	path = wiki
-	url = git@github.com:stelligent/mu.wiki.git
-	branch = master
