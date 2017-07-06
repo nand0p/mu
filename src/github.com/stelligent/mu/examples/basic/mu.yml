@@ -1,0 +1,20 @@
+---
+
+environments:
+  - name: dev
+    cluster:
+      maxSize: 2
+  - name: production
+    cluster:
+      maxSize: 5
+
+service:
+  name: basic-example
+  healthEndpoint: /
+  port: 80
+  pathPatterns:
+    - /*
+  pipeline:
+    muVersion: 0.1.10-develop
+    source:
+      repo: cplee/aftp-mu

@@ -1,0 +1,38 @@
+asciinema rec ~/Dev/mu/mu/wiki/quick-start-raw.json
+setopt interactivecomments
+
+clear
+# Start with a basic website with a Dockerfile for nginx
+ls
+cat Dockerfile
+
+clear
+# Initialize mu.yml and buildspec.yml
+mu init --port 80 --env
+ls
+cat mu.yml
+cat buildspec.yml
+git add --all
+git commit -m "mu init"
+git push
+
+clear
+# Create the pipeline, which will manage the environments
+mu pipeline up 
+
+clear
+# Check out what mu has created
+mu pipeline list
+mu svc show 
+mu env ls
+mu env show dev
+
+clear
+# Test the app
+mu env show production
+curl ...
+
+Ctrl-D
+node apply-max.js > quick-start.json
+asciinema upload quick-start.json
+asciinema2gif -s medium -o mu-quickstart.gif https://asciinema.org/api/asciicasts/...

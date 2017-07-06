@@ -1,0 +1,38 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: MU VPC targeting an existing VPC and subnets that are not managed by mu
+Parameters:
+  VpcId:
+    Description: VPC to target
+    Type: String
+  EcsSubnetIds:
+    Description: ECS subnet ids
+    Type: CommaDelimitedList
+  ElbSubnetIds:
+    Description: ELB subnet ids
+    Type: CommaDelimitedList
+Resources:
+  WaitHandle:
+    Type: "AWS::CloudFormation::WaitConditionHandle"
+Outputs:
+  VpcId:
+    Description: The id of the vpc
+    Value: !Ref VpcId
+    Export:
+      Name: !Sub ${AWS::StackName}-VpcId
+  EcsSubnetIds:
+    Description: The ECS subnetids
+    Value:
+      Fn::Join:
+      - ','
+      - !Ref EcsSubnetIds
+    Export:
+      Name: !Sub ${AWS::StackName}-EcsSubnetIds
+  ElbSubnetIds:
+    Description: The ELB subnetids
+    Value:
+      Fn::Join:
+      - ','
+      - !Ref ElbSubnetIds
+    Export:
+      Name: !Sub ${AWS::StackName}-ElbSubnetIds
